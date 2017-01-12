@@ -26,6 +26,7 @@ function trpdownload_api_feature_register_trpdownload_type() {
     'format' => 'FASTA file format',
     'functions' => array(
       'generate_file' => 'trpdownload_feature_fasta_generate_file',
+      'get_file_suffix' => 'trpdownload_feature_fasta_get_suffix',
     ),
   );
 
@@ -288,4 +289,8 @@ function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
 
   // Finally, close the file.
   fclose($FILE);
+}
+
+function trpdownload_feature_fasta_get_suffix() {
+  return 'fasta';
 }
