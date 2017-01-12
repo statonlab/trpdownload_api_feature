@@ -16,7 +16,7 @@ function trpdownload_api_feature_register_trpdownload_type() {
     'suffix' => 'csv',
     'format' => 'Comma-separated Values',
     'functions' => array(
-      'generate_file' => 'trpdownload_feature_csv_generate_file',
+      'generate_file' => 'trpdownload_api_feature_csv_generate_file',
     ),
   );
 
@@ -26,7 +26,7 @@ function trpdownload_api_feature_register_trpdownload_type() {
     'format' => 'FASTA file format',
     'functions' => array(
       'generate_file' => 'trpdownload_feature_fasta_generate_file',
-      'get_file_suffix' => 'trpdownload_feature_fasta_get_suffix',
+      'get_file_suffix' => 'trpdownload_api_feature_fasta_get_suffix',
     ),
   );
 
@@ -295,7 +295,7 @@ function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
  * Make fasta files end with fasta extension.
  * @return string
  */
-function trpdownload_feature_fasta_get_suffix() {
+function trpdownload_api_feature_fasta_get_suffix() {
   return 'fasta';
 }
 
@@ -303,6 +303,6 @@ function trpdownload_feature_fasta_get_suffix() {
  * Make csv files end with csv extension.
  * @return string
  */
-function trpdownload_feature_csv_generate_file() {
+function trpdownload_api_feature_csv_generate_file() {
   return 'csv';
 }
