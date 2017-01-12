@@ -229,6 +229,18 @@ function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
     $where_args[':organism'] = $variables['q']['organism'];
   }
 
+  // organism.id
+  if (isset($variables['q']['organism_id']) AND !empty($variables['q']['organism_id'])) {
+    $where[] = "organism.organism_id = :organism_id";
+    $where_args[':organism_id'] = $variables['q']['organism_id'];
+  }
+
+
+  if(empty($where)) {
+    drush_print("Error! No constraints were found.");
+    return false;
+  }
+
   // Query copied from the views interface with where arguments determined above.
   $query = "SELECT
               node_chado_feature.nid AS node_chado_feature_nid,
