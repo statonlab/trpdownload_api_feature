@@ -48,7 +48,7 @@ function trpdownload_api_feature_menu() {
   );
 
   $items['chado/feature/fasta'] = array(
-    'title' => 'Download Features: CSV',
+    'title' => 'Download Features: FASTA',
     'page callback' => 'trpdownload_download_page',
     'page arguments' => array('feature_fasta', 3),
     'access arguments' => array('access content'),
