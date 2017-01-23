@@ -113,7 +113,7 @@ function trpdownload_feature_csv_generate_file($variables, $job_id = NULL) {
   $where = array();
   $where_args = array();
 
-  prep_where($where, $where_args);
+  prep_where($where, $where_args, $variables);
 
   if (empty($where)) {
     drush_print("Error! No constraints were found.");
@@ -185,7 +185,7 @@ function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
   // Determine which where criteria to include based on what is in query parameters.
   $where = array();
   $where_args = array();
-  prep_where($where, $where_args);
+  prep_where($where, $where_args, $variables);
 
 
   if (empty($where)) {
@@ -348,8 +348,9 @@ function fputfasta($FILE, $uniquename, $data, $sequence) {
  *
  * @param $where
  * @param $where_args
+ * @param $variables
  */
-function prep_where(&$where, &$where_args) {
+function prep_where(&$where, &$where_args, $variables) {
   // feature.name
   if (isset($variables['q']['name']) AND !empty($variables['q']['name'])) {
     $where[] = "feature.name ~ :name";
