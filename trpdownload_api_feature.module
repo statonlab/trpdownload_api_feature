@@ -112,35 +112,8 @@ function trpdownload_feature_csv_generate_file($variables, $job_id = NULL) {
   // Determine which where criteria to include based on what is in query parameters.
   $where = array();
   $where_args = array();
-  // feature.name
-  if (isset($variables['q']['name']) AND !empty($variables['q']['name'])) {
-    $where[] = "feature.name ~ :name";
-    $where_args[':name'] = $variables['q']['name'];
-  }
-  // feature.uniquename
-  if (isset($variables['q']['uniquename']) AND !empty($variables['q']['uniquename'])) {
-    $where[] = "feature.uniquename ~ :uniquename";
-    $where_args[':uniquename'] = $variables['q']['uniquename'];
-  }
-  // feature.type_id
-  if (isset($variables['q']['type_id']) AND !empty($variables['q']['type_id'])) {
-    $where[] = "feature.type_id = :type_id";
-    $where_args[':type_id'] = $variables['q']['type_id'];
-  }
-  // organism.common_name
-  if (isset($variables['q']['organism'])
-    AND !empty($variables['q']['organism'])
-    AND $variables['q']['organism'] != 'All'
-  ) {
-    $where[] = "organism.common_name = :organism";
-    $where_args[':organism'] = $variables['q']['organism'];
-  }
-  // organism.id
-  if (isset($variables['q']['organism_id']) AND !empty($variables['q']['organism_id'])) {
-    $where[] = "organism.organism_id = :organism_id";
-    $where_args[':organism_id'] = $variables['q']['organism_id'];
-  }
 
+  prep_where($where, $where_args);
 
   if (empty($where)) {
     drush_print("Error! No constraints were found.");
@@ -212,35 +185,7 @@ function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
   // Determine which where criteria to include based on what is in query parameters.
   $where = array();
   $where_args = array();
-  // feature.name
-  if (isset($variables['q']['name']) AND !empty($variables['q']['name'])) {
-    $where[] = "feature.name ~ :name";
-    $where_args[':name'] = $variables['q']['name'];
-  }
-  // feature.uniquename
-  if (isset($variables['q']['uniquename']) AND !empty($variables['q']['uniquename'])) {
-    $where[] = "feature.uniquename ~ :uniquename";
-    $where_args[':uniquename'] = $variables['q']['uniquename'];
-  }
-  // feature.type_id
-  if (isset($variables['q']['type_id']) AND !empty($variables['q']['type_id'])) {
-    $where[] = "feature.type_id = :type_id";
-    $where_args[':type_id'] = $variables['q']['type_id'];
-  }
-  // organism.common_name
-  if (isset($variables['q']['organism'])
-    AND !empty($variables['q']['organism'])
-    AND $variables['q']['organism'] != 'All'
-  ) {
-    $where[] = "organism.common_name = :organism";
-    $where_args[':organism'] = $variables['q']['organism'];
-  }
-
-  // organism.id
-  if (isset($variables['q']['organism_id']) AND !empty($variables['q']['organism_id'])) {
-    $where[] = "organism.organism_id = :organism_id";
-    $where_args[':organism_id'] = $variables['q']['organism_id'];
-  }
+  prep_where($where, $where_args);
 
 
   if (empty($where)) {
@@ -396,4 +341,41 @@ function trpdownload_api_feature_csv_generate_file() {
 function fputfasta($FILE, $uniquename, $data, $sequence) {
   fwrite($FILE, ">$uniquename $data\n");
   fwrite($FILE, "$sequence\n\n");
+}
+
+/**
+ * Adds the where clauses to the arrays.
+ *
+ * @param $where
+ * @param $where_arags
+ */
+function prep_where(&$where, &$where_arags) {
+  // feature.name
+  if (isset($variables['q']['name']) AND !empty($variables['q']['name'])) {
+    $where[] = "feature.name ~ :name";
+    $where_args[':name'] = $variables['q']['name'];
+  }
+  // feature.uniquename
+  if (isset($variables['q']['uniquename']) AND !empty($variables['q']['uniquename'])) {
+    $where[] = "feature.uniquename ~ :uniquename";
+    $where_args[':uniquename'] = $variables['q']['uniquename'];
+  }
+  // feature.type_id
+  if (isset($variables['q']['type_id']) AND !empty($variables['q']['type_id'])) {
+    $where[] = "feature.type_id = :type_id";
+    $where_args[':type_id'] = $variables['q']['type_id'];
+  }
+  // organism.common_name
+  if (isset($variables['q']['organism'])
+    AND !empty($variables['q']['organism'])
+    AND $variables['q']['organism'] != 'All'
+  ) {
+    $where[] = "organism.common_name = :organism";
+    $where_args[':organism'] = $variables['q']['organism'];
+  }
+  // organism.id
+  if (isset($variables['q']['organism_id']) AND !empty($variables['q']['organism_id'])) {
+    $where[] = "organism.organism_id = :organism_id";
+    $where_args[':organism_id'] = $variables['q']['organism_id'];
+  }
 }
