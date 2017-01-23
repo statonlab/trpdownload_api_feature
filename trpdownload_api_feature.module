@@ -347,9 +347,9 @@ function fputfasta($FILE, $uniquename, $data, $sequence) {
  * Adds the where clauses to the arrays.
  *
  * @param $where
- * @param $where_arags
+ * @param $where_args
  */
-function prep_where(&$where, &$where_arags) {
+function prep_where(&$where, &$where_args) {
   // feature.name
   if (isset($variables['q']['name']) AND !empty($variables['q']['name'])) {
     $where[] = "feature.name ~ :name";
