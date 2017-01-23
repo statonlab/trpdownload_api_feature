@@ -90,6 +90,8 @@ function trpdownload_api_feature_menu() {
  *     - format_name: a human-readable description of the format.
  * @param $job_id
  *   The ID of the tripal job executing this function ;-).
+ *
+ * @return void
  */
 function trpdownload_feature_csv_generate_file($variables, $job_id = NULL) {
 
@@ -174,6 +176,7 @@ function trpdownload_feature_csv_generate_file($variables, $job_id = NULL) {
  *
  * @param $variables
  * @param null $job_id
+ * @return void
  */
 function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
 
@@ -256,6 +259,7 @@ function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
  *     - format_name: a human-readable description of the format.
  * @param $job_id
  *   The ID of the tripal job executing this function ;-).
+ * @return void
  */
 function trpdownload_expression_csv_generate_file($variables, $job_id = NULL) {
   // Create the file and ready it for writting to.
