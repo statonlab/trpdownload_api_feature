@@ -98,7 +98,7 @@ function trpdownload_feature_csv_generate_file($variables, $job_id = NULL) {
   // Create the file and ready it for writting to.
   $filepath = variable_get('trpdownload_fullpath', '') . $variables['filename'];
   drush_print("File: " . $filepath);
-  $FILE = fopen($filepath, 'w') or die ('Uable to create file to write to');
+  $FILE = fopen($filepath, 'w') or die ('Unable to create file to write to');
 
 
   // Add header to the file.
@@ -182,19 +182,12 @@ function trpdownload_feature_fasta_generate_file($variables, $job_id = NULL) {
 
   // Create the file and ready it for writting to.
   $filepath = variable_get('trpdownload_fullpath', '') . $variables['filename'];
-  drush_print("File: " . $filepath);
-  $FILE = fopen($filepath, 'w') or die ('Uable to create file to write to');
+  $FILE = fopen($filepath, 'w') or die ('Unable to create file to write to');
 
   // Determine which where criteria to include based on what is in query parameters.
   $where = array();
   $where_args = array();
   prep_where($where, $where_args, $variables);
-
-
-  if (empty($where)) {
-    drush_print("Error! No constraints were found.");
-    return FALSE;
-  }
 
   // Query copied from the views interface with where arguments determined above.
   $query = "SELECT
@@ -265,7 +258,7 @@ function trpdownload_expression_csv_generate_file($variables, $job_id = NULL) {
   // Create the file and ready it for writting to.
   $filepath = variable_get('trpdownload_fullpath', '') . $variables['filename'];
   drush_print("File: " . $filepath);
-  $FILE = fopen($filepath, 'w') or die ('Uable to create file to write to');
+  $FILE = fopen($filepath, 'w') or die ('Unable to create file to write to');
 
 
   // Add header to the file.
